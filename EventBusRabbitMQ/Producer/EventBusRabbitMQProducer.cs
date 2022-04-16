@@ -20,7 +20,7 @@ namespace EventBusRabbitMQ.Producer
         private readonly IRabbitMQPersistentConnection _persistentConnection;
         private readonly ILogger<EventBusRabbitMQProducer> _logger;
         private readonly int _retryCount;
-        public EventBusRabbitMQProducer(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQProducer> logger, int retryCount)
+        public EventBusRabbitMQProducer(IRabbitMQPersistentConnection persistentConnection, ILogger<EventBusRabbitMQProducer> logger, int retryCount = 5)
         {
             _persistentConnection = persistentConnection;
             _logger = logger;
@@ -47,8 +47,6 @@ namespace EventBusRabbitMQ.Producer
             {
                 channel.QueueDeclare(queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
                 var message = JsonConvert.SerializeObject(@event);
-
-
                 var body = Encoding.UTF8.GetBytes(message);
 
                 //policy icerisinde queue ya mesaj bırakmak için kullanıyoruz, burada bi problem oldugunda policy lerin queue ya bilgi göndermesi icin kullanıyoruz
