@@ -54,7 +54,6 @@ namespace EventBusRabbitMQ
             });
 
 
-
             if (IsConnected)
             {
                 _connection.ConnectionShutdown += OnConnectionShutdown;
