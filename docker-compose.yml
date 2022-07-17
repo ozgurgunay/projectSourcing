@@ -27,6 +27,7 @@ services:
     build:
       context: .
       dockerfile: ESourcing.Order/Dockerfile
+
   esourcing.apigateway:
     image: ${DOCKER_REGISTRY-}esourcingapigateway
     build:
