@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using ESourcing.Sourcing.Hubs;
 
 namespace ESourcing.Sourcing
 {
@@ -101,6 +102,9 @@ namespace ESourcing.Sourcing
 
             #endregion
 
+            services.AddSignalR();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,6 +121,7 @@ namespace ESourcing.Sourcing
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<AuctionHub>("/auctionhub");
                 endpoints.MapControllers();
             });
 
