@@ -70,6 +70,7 @@ namespace ESourcing.UI
 
             services.AddHttpClient<ProductClient>();
             services.AddHttpClient<AuctionClient>();
+            services.AddHttpClient<BidClient>();
 
 
         }

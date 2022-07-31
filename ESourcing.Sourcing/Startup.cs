@@ -102,8 +102,16 @@ namespace ESourcing.Sourcing
 
             #endregion
 
-            services.AddSignalR();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder => 
+            {
+                builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .WithOrigins("https://localhost:45237");
+            }));
 
+            services.AddSignalR();
 
         }
 
@@ -118,6 +126,7 @@ namespace ESourcing.Sourcing
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
